@@ -18,23 +18,27 @@ class Dependencies():
         self.dependencies = {} #Dictionary data structure to map a package to a list of its direct dependencies
 
         #Read in each line of the file, ignore empty lines
-        for line in open(self.filename, "r"):
-            words = line.split()
+        try:
+            for line in open(self.filename, "r"):
+                words = line.split()
 
-            #Ignore the empty lines
-            if len(words) > 0:
-                try:
-                    if words[1] == "->":
-                        self.dependencies[words[0]] = words[2:]
-                    #Exit if second word of the line is not an arrow
-                    else:
+                #Ignore the empty lines
+                if len(words) > 0:
+                    try:
+                        if words[1] == "->":
+                            self.dependencies[words[0]] = words[2:]
+                        #Exit if second word of the line is not an arrow
+                        else:
+                            sys.exit("Exiting: input file must contain a package name followed by '->'.")
+                    #Also exit if words[1] doesn't exist
+                    except IndexError:
                         sys.exit("Exiting: input file must contain a package name followed by '->'.")
-                #Also exit if words[1] doesn't exist
-                except IndexError:
-                    sys.exit("Exiting: input file must contain a package name followed by '->'.")
+
+        except IOError:
+            sys.exit("Error: the input file does not exist.")
 
         #Retrieve dependencies for each of the specified packages
-        for pkg in pkgs:
+        for pkg in self.pkgs:
             self.get_dependencies(pkg)
 
     #Prints dependencies for a given package
@@ -66,7 +70,7 @@ class Dependencies():
 if __name__ == '__main__':
     #Exit if the user does not specify enough arguments
     if len(sys.argv) < 3:
-        sys.exit("Exiting: not enough arguments specified.")
+        sys.exit("Exiting: you must specify at least an input file and a package name.")
 
     else:
         #Index 0 is the python script filename, so ignore
