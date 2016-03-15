@@ -29,10 +29,10 @@ class Dependencies():
                             self.dependencies[words[0]] = words[2:]
                         #Exit if second word of the line is not an arrow
                         else:
-                            sys.exit("Exiting: input file must contain a package name followed by '->'.")
+                            sys.exit("Error: input file must contain a package name followed by '->'.")
                     #Also exit if words[1] doesn't exist
                     except IndexError:
-                        sys.exit("Exiting: input file must contain a package name followed by '->'.")
+                        sys.exit("Error: input file must contain a package name followed by '->'.")
 
         except IOError:
             sys.exit("Error: the input file does not exist.")
@@ -70,7 +70,7 @@ class Dependencies():
 if __name__ == '__main__':
     #Exit if the user does not specify enough arguments
     if len(sys.argv) < 3:
-        sys.exit("Exiting: you must specify at least an input file and a package name.")
+        sys.exit("Error: you must specify at least an input file and a package name.")
 
     else:
         #Index 0 is the python script filename, so ignore
