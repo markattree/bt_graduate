@@ -76,7 +76,7 @@ print "Actual results"
 os.system("python depend.py does_not_exist.txt framework runner awtui")
 print ""
 
-#Test 8 - Not enougy arguments specified
+#Test 8 - Not enough arguments specified
 print "******************** TEST 8 ********************"
 print "Expected results:"
 print "Error: you must specify at least an input file and a package name."
