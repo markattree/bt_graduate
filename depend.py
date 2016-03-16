@@ -48,13 +48,16 @@ class Dependencies():
             deps = self.dependencies[pkg]
 
             #Loop through the dependencies to find transitive dependencies
-            for i in range(0, len(deps)):
+            #While loop is used so that Python keeps calling len(deps) for each loop iteration which it does not do if you use for i in range(0, len(deps))
+            i = 0
+            while i < len(deps):
                 if deps[i] in self.dependencies:
                     #For the dependencies found, add them to the list to find their dependencies too
                     for dep in self.dependencies[deps[i]]:
                         #Only added if they have not already been added, or it is not circular
                         if dep not in deps and dep != pkg:
                             deps.append(dep)
+                i += 1
 
             #Sort the list before printing
             deps.sort()
