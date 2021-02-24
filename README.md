@@ -1,6 +1,6 @@
-#BT Graduate Coding Test Submission
+# BT Graduate Coding Test Submission
 
-##Usage
+## Usage
 
 To check the dependencies of a given file, run the following command:
 
@@ -14,7 +14,7 @@ The input file can be of any type, provided it can be read using Python. Recomme
 
 Any blank lines in the file will be ignored, however any lines not in the format stated above or that do not contain at least a package name and a '->' will cause the program to terminate.
 
-##Automated Test Harness
+## Automated Test Harness
 
 To run the automated test harness, run the following command:
 
